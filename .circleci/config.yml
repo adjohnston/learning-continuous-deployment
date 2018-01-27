@@ -1,0 +1,50 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: circleci/node:9
+
+    steps:
+      - checkout
+      - run:
+          name: Installing dependencies
+          command: yarn
+
+      - run:
+          name: Running tests
+          command: yarn test
+
+  deploy-stage:
+    docker:
+      - image: circleci/node:9
+
+    steps:
+      - checkout
+      - run:
+          name: Installing now
+          command: sudo yarn global add now
+
+      - deploy:
+          name: Deploying to Now staging
+          command: now --token ${NOW_TOKEN} --public
+
+workflows:
+  version: 2
+  test-deploy:
+    jobs:
+      - test
+      - deploy-stage:
+          requires:
+            - test
+
+          filters:
+            branches:
+              only: stage
+
+      - deploy-production:
+          requires:
+            - test
+
+          filters:
+            branches:
+              only: master
