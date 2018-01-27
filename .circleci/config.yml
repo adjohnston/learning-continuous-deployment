@@ -21,8 +21,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install now
-          command: yarn global add now
+          name: Installing now
+          command: sudo yarn global add now
 
       - deploy:
           name: Deploying to Now staging
