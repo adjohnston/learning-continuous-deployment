@@ -34,6 +34,6 @@ workflows:
     jobs:
       - test
       - deploy-stage:
-        filters:
-          branches:
-            only: bob
+          filters:
+            branches:
+              only: stage
