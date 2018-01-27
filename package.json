@@ -4,5 +4,11 @@
   "main": "index.js",
   "repository": "git@github.com:adjohnston/learning-continuous-deployment.git",
   "author": "Adam Johnston <adam.johnston3679@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^22.1.4"
+  }
 }
