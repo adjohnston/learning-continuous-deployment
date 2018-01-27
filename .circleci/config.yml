@@ -21,8 +21,12 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install now
+          command: yarn global add now
+
+      - deploy:
           name: Deploying to Now staging
-          command: now
+          command: now -t {NOW_TOKEN}
 
 workflows:
   version: 2
@@ -36,7 +40,7 @@ workflows:
       - deploy-stage:
           requires:
             - test
-            
+
           filters:
             branches:
               only: stage
