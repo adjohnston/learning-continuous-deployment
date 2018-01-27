@@ -40,3 +40,11 @@ workflows:
           filters:
             branches:
               only: stage
+
+      - deploy-production:
+          requires:
+            - test
+
+          filters:
+            branches:
+              only: master
