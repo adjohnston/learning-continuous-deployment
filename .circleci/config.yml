@@ -30,12 +30,9 @@ jobs:
 
 workflows:
   version: 2
-  test:
+  test-deploy:
     jobs:
       - test
-
-  test-deploy-stage:
-    jobs:
       - deploy-stage:
           requires:
             - test
