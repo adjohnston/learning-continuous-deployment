@@ -19,7 +19,7 @@ jobs:
       - image: circleci/node:9
 
     steps:
-      - checkout 
+      - checkout
       - run:
           name: Deploying to Now staging
           command: now
@@ -30,14 +30,13 @@ workflows:
     jobs:
       - test
 
-  test_deploy_stage:
-    requires:
-      - test
-
-    filters:
-      branches:
-        only:
-          - stage
-
+  test-deploy-stage:
     jobs:
-      - deploy-stage
+      - test
+      - deploy-stage:
+          requires:
+            - test
+            
+          filters:
+            branches:
+              only: stage
