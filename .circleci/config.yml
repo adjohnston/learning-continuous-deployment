@@ -36,7 +36,6 @@ workflows:
 
   test-deploy-stage:
     jobs:
-      - test
       - deploy-stage:
           requires:
             - test
