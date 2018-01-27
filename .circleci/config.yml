@@ -1,21 +1,33 @@
 version: 2
 jobs:
-  build:
+  test:
     docker:
       image: circleci/node:9
 
-    branches:
-      only: stage
-
     steps:
-      - run:
+      run:
         name: Installing dependencies
         commaned: yarn
 
-      - run:
+      run:
         name: Running tests
         command: yarn test
 
-      - run:
+  deploy-stage:
+    steps:
+      run:
         name: Deploying to Now staging
         command: now
+
+workflows:
+  test:
+    jobs: test
+
+  test_deploy_stage:
+    requires: test
+
+    filters:
+      branches:
+        only: stage
+
+    jobs: deploy-stage
