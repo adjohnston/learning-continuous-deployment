@@ -33,4 +33,7 @@ workflows:
   test-deploy-stage:
     jobs:
       - test
-      - deploy-stage
+      - deploy-stage:
+        filters:
+          branches:
+            only: stage
